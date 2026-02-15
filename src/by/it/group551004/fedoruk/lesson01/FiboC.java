@@ -22,9 +22,20 @@ public class FiboC {
     }
 
     long fasterC(long n, int m) {
-        //Интуитивно найти решение не всегда просто и
-        //возможно потребуется дополнительный поиск информации
-        return -1L;
+        long[] fib = new long[6 * m];
+        int i = 2;
+        boolean flag = true;
+        if (n < 2) return n;
+        fib[0] = 0;
+        fib[1] = 1;
+
+        while (flag) {
+            fib[i] = (fib[i - 1] + fib[i - 2]) % m;
+            if (fib[i - 1] == 0 && fib[i] == 1)
+                flag = false;
+            else i++;
+        }
+        return fib[(int) (n % (i-1))];
     }
 
 
