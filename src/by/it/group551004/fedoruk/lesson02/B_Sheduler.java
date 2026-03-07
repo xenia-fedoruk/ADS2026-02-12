@@ -32,6 +32,32 @@ public class B_Sheduler {
         List<Event> result;
         result = new ArrayList<>();
         //ваше решение.
+        Event temp;
+        for (int i=0; i<24; i++) {
+            for (int j=23; j>i; j--){
+                if (events[j].stop<events[j-1].stop){
+                    temp = events[j];
+                    events[j] = events[j-1];
+                    events[j-1] = temp;
+                }
+            }
+        }
+        int i=1;
+        int Right = events[0].stop;
+        result.add(events[0]);
+        while (i<24)
+        {
+            if (events[i].start>=Right)
+            {
+                result.add(events[i]);
+                Right = events[i].stop;
+            }
+            i++;
+        }
+
+
+
+
 
 
         return result;          //вернем итог
